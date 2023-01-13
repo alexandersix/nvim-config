@@ -1,3 +1,10 @@
 return {
-    {"lukas-reineke/indent-blankline.nvim"}
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        config = function()
+            require("indent_blankline").setup({
+                enabled = true,
+            })
+        end
+    }
 }
