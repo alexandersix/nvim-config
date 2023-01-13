@@ -15,6 +15,9 @@ map("n", "<leader>bj", "<C-^>", opts)
 map("n", "<leader>bn", "<cmd>bnext<cr>", opts)
 map("n", "<leader>bp", "<cmd>bprevious<cr>", opts)
 
+-- File Tree (Ex) --
+map("n", "<leader>e", ":Ex<cr>", opts)
+
 -- Visual mode tweaks --
 -- Stay in indent mode
 map("v", "<", "<gv", opts)
