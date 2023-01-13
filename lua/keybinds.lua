@@ -34,6 +34,8 @@ map("n", "Y", "y$", opts)
 map("n", "n", "nzzzv", opts)
 map("n", "N", "Nzzzv", opts)
 map("n", "J", "mzJ`z", opts)
+map("n", "<C-d>", "<C-d>zz", opts)
+map("n", "<C-u>", "<C-u>zz", opts)
 
 -- Undo breakpoints
 map("i", ",", ",<C-g>u", opts)
