@@ -1,3 +1,8 @@
 return {
-    {"camgraff/telescope-tmux.nvim"}
+    {
+        "camgraff/telescope-tmux.nvim",
+        cmd = {
+            "Telescope"
+        }
+    }
 }
