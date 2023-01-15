@@ -16,11 +16,15 @@ return {
 			{ 'hrsh7th/cmp-nvim-lsp' },
 			{ 'hrsh7th/cmp-nvim-lua' },
 
+			-- Styling
+			{ 'onsails/lspkind.nvim' },
+
 			-- Progress
 			{ "j-hui/fidget.nvim" },
 
 			-- Snippets
 			{ 'L3MON4D3/LuaSnip' },
+
 			-- Snippet Collection (Optional)
 			{ 'rafamadriz/friendly-snippets' },
 		},
@@ -29,7 +33,6 @@ return {
 
 			local lsp = require("lsp-zero")
 			lsp.preset("recommended")
-
 
 			-- Ensure these servers are always installed
 			lsp.ensure_installed({
@@ -93,17 +96,26 @@ return {
 				['<C-j>'] = cmp.mapping.select_next_item(),
 			})
 
-			-- disable existing mappings
-			cmp_mappings['<Tab>'] = nil
-			cmp_mappings['<S-Tab>'] = nil
-			cmp_mappings['<CR>'] = nil
-
-			cmp.setup({
-				preselect = cmp.PreselectMode.None,
-			})
-
 			lsp.setup_nvim_cmp({
+				completion = {
+					completeopt = "menu,menuone,noinsert,noselect"
+				},
+				formatting = {
+					fields = { "kind", "abbr", "menu" },
+					format = function(entry, vim_item)
+						local kind = require("lspkind").cmp_format({
+							mode = "symbol_text",
+							maxwidth = 50,
+						})(entry, vim_item)
+						local strings = vim.split(kind.kind, "%s", { trimempty = true })
+						kind.kind = " " .. (strings[1] or "") .. " "
+						kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+						return kind
+					end
+				},
 				mapping = cmp_mappings,
+				preselect = "none",
 			})
 
 			lsp.setup()
