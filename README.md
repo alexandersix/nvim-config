@@ -73,19 +73,14 @@ second parameter is the code to be executed when the mapping is initiated.
 ## Features
 
 - Startup Dashboard
-- LSP and Code Completion
+- LSP and Code Completion (including format-on-save)
 - Syntax Highlighting & Indentation w/ Treesitter
 - Built-Tn Testing Capabilities
 - Fuzzy Finder
 - Quick File Navigation w/ Harpoon
 - Git Integrations
-
-
-## Roadmap
-
-- Null-ls integration
-- LSP format on save
-
+- Tmux Integrations
+- Undo Tree Navigation
 
 ## License
 
