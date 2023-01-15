@@ -8,7 +8,6 @@ set.foldmethod = "manual" -- Manually create folds
 set.completeopt = { "menu", "menuone", "noselect" } -- Insert mode completion options
 set.colorcolumn = "100"
 set.backup = false -- Disable backup files
-set.expandtab = true -- Enable the use of space in tab
 set.hidden = true -- Ignore unsaved buffers
 set.hlsearch = false -- No highlight of matching search pattern
 set.ignorecase = true -- Case insensitive searching
