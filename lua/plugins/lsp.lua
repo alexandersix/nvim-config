@@ -3,25 +3,26 @@ return {
         'VonHeikemen/lsp-zero.nvim',
         dependencies = {
             -- LSP Support
-            {'neovim/nvim-lspconfig'},
-            {'williamboman/mason.nvim'},
-            {'williamboman/mason-lspconfig.nvim'},
+            { 'neovim/nvim-lspconfig' },
+            { 'williamboman/mason.nvim' },
+            { 'williamboman/mason-lspconfig.nvim' },
+            { 'lukas-reineke/lsp-format.nvim' },
 
             -- Autocompletion
-            {'hrsh7th/nvim-cmp'},
-            {'hrsh7th/cmp-buffer'},
-            {'hrsh7th/cmp-path'},
-            {'saadparwaiz1/cmp_luasnip'},
-            {'hrsh7th/cmp-nvim-lsp'},
-            {'hrsh7th/cmp-nvim-lua'},
+            { 'hrsh7th/nvim-cmp' },
+            { 'hrsh7th/cmp-buffer' },
+            { 'hrsh7th/cmp-path' },
+            { 'saadparwaiz1/cmp_luasnip' },
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'hrsh7th/cmp-nvim-lua' },
 
             -- Progress
-            {"j-hui/fidget.nvim"},
+            { "j-hui/fidget.nvim" },
 
             -- Snippets
-            {'L3MON4D3/LuaSnip'},
+            { 'L3MON4D3/LuaSnip' },
             -- Snippet Collection (Optional)
-            {'rafamadriz/friendly-snippets'},
+            { 'rafamadriz/friendly-snippets' },
         },
         config = function()
             require("fidget").setup()
@@ -57,8 +58,20 @@ return {
             -- Configure lua language server for neovim
             lsp.nvim_workspace()
 
-            lsp.on_attach(function(_, bufnr)
-                local opts = {buffer = bufnr, remap = false}
+            -- Configure auto-formatting
+            require("lsp-format").setup()
+
+            lsp.on_attach(function(client, bufnr)
+
+                -- Exclude specific clients from autoformatting
+                require("lsp-format").on_attach(
+                    client,
+                    {
+                        exclude = { "eslint" }
+                    }
+                )
+
+                local opts = { buffer = bufnr, remap = false }
                 local bind = vim.keymap.set
 
                 bind("n", "<leader>cD", function() vim.lsp.buf.declaration() end, opts)
@@ -95,4 +108,5 @@ return {
 
             lsp.setup()
         end
-    }}
+    }
+}
