@@ -70,7 +70,7 @@ return {
 				require("lsp-format").on_attach(
 					client,
 					{
-						exclude = { "eslint" }
+						exclude = { "eslint", "volar" }
 					}
 				)
 
