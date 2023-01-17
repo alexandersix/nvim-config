@@ -62,17 +62,15 @@ return {
 			lsp.nvim_workspace()
 
 			-- Configure auto-formatting
-			require("lsp-format").setup()
+			require("lsp-format").setup({
+				exclude = { "eslint", "volar", "eslint-lsp", "vue-language-server" }
+			})
 
 			lsp.on_attach(function(client, bufnr)
 
-				-- Exclude specific clients from autoformatting
-				require("lsp-format").on_attach(
-					client,
-					{
-						exclude = { "eslint", "volar" }
-					}
-				)
+				if (client.name ~= "volar" and client.name ~= "eslint") then
+					require("lsp-format").on_attach(client)
+				end
 
 				local opts = { buffer = bufnr, remap = false }
 				local bind = vim.keymap.set
