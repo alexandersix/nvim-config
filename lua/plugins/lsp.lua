@@ -40,7 +40,6 @@ return {
 				'bashls',
 				'clangd',
 				'cssls',
-				'denols',
 				'dockerls',
 				'eslint',
 				'gopls',
