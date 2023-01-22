@@ -67,7 +67,7 @@ return {
 
 			lsp.on_attach(function(client, bufnr)
 
-				if (client.name ~= "volar" and client.name ~= "eslint") then
+				if (client.name ~= "volar" and client.name ~= "eslint" and client.name ~= "tsserver") then
 					require("lsp-format").on_attach(client)
 				end
 
