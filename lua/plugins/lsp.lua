@@ -48,7 +48,7 @@ return {
 				'jsonls',
 				'rust_analyzer',
 				'sqlls',
-				'sumneko_lua',
+				'lua_ls',
 				'svelte',
 				'tailwindcss',
 				'tsserver',
@@ -66,7 +66,6 @@ return {
 			})
 
 			lsp.on_attach(function(client, bufnr)
-
 				if (client.name ~= "volar" and client.name ~= "eslint" and client.name ~= "tsserver") then
 					require("lsp-format").on_attach(client)
 				end
@@ -101,9 +100,9 @@ return {
 					fields = { "kind", "abbr", "menu" },
 					format = function(entry, vim_item)
 						local kind = require("lspkind").cmp_format({
-							mode = "symbol_text",
-							maxwidth = 50,
-						})(entry, vim_item)
+								mode = "symbol_text",
+								maxwidth = 50,
+							})(entry, vim_item)
 						local strings = vim.split(kind.kind, "%s", { trimempty = true })
 						kind.kind = " " .. (strings[1] or "") .. " "
 						kind.menu = "    (" .. (strings[2] or "") .. ")"
