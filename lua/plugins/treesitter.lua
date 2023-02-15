@@ -13,8 +13,8 @@ return {
                 autotag = {
                     enable = true
                 },
-                ensure_installed = { "bash", "c", "cpp", "git_rebase", "go", "help", "html", "javascript", "json", "lua",
-                    "php", "rust", "svelte", "tsx", "vim", "vue", "yaml" },
+                ensure_installed = { "bash", "c", "cpp", "css", "git_rebase", "go", "help", "html", "javascript", "json", "lua",
+                    "php", "rust", "svelte", "tsx", "typescript", "vim", "vue", "yaml" },
                 highlight = {
                     enable = true,
                 },
