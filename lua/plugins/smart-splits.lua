@@ -3,20 +3,20 @@ return {
         "mrjones2014/smart-splits.nvim",
         keys = {
             -- window movement
-            {"<leader>wh", function() require("smart-splits").move_cursor_left() end},
-            {"<leader>wj", function() require("smart-splits").move_cursor_down() end},
-            {"<leader>wk", function() require("smart-splits").move_cursor_up() end},
-            {"<leader>wl", function() require("smart-splits").move_cursor_right() end},
-            {"<C-h>", function() require("smart-splits").move_cursor_left() end},
-            {"<C-j>", function() require("smart-splits").move_cursor_down() end},
-            {"<C-k>", function() require("smart-splits").move_cursor_up() end},
-            {"<C-l>", function() require("smart-splits").move_cursor_right() end},
+            { "<leader>wh", function() require("smart-splits").move_cursor_left() end },
+            { "<leader>wj", function() require("smart-splits").move_cursor_down() end },
+            { "<leader>wk", function() require("smart-splits").move_cursor_up() end },
+            { "<leader>wl", function() require("smart-splits").move_cursor_right() end },
+            { "<C-h>",      function() require("smart-splits").move_cursor_left() end },
+            { "<C-j>",      function() require("smart-splits").move_cursor_down() end },
+            { "<C-k>",      function() require("smart-splits").move_cursor_up() end },
+            { "<C-l>",      function() require("smart-splits").move_cursor_right() end },
 
             -- resizing
-            {"<leader>wr", function() require("smart-splits").start_resize_mode() end},
+            { "<leader>wr", function() require("smart-splits").start_resize_mode() end },
 
         },
-        config = function ()
+        config = function()
             require('smart-splits').setup({
                 -- Ignored filetypes (only while resizing)
                 ignored_filetypes = {
@@ -31,7 +31,7 @@ return {
                 -- whether to wrap to opposite side when cursor is at an edge
                 -- e.g. by default, moving left at the left edge will jump
                 -- to the rightmost window, and vice versa, same for up/down.
-                wrap_at_edge = true,
+                at_edge = 'wrap',
                 -- when moving cursor between splits left or right,
                 -- place the cursor on the same row of the *screen*
                 -- regardless of line numbers. False by default.
@@ -63,10 +63,8 @@ return {
                     'BufEnter',
                     'WinEnter',
                 },
-                -- enable or disable the tmux integration
-                tmux_integration = true,
                 -- disable tmux navigation if current tmux pane is zoomed
-                disable_tmux_nav_when_zoomed = true,
+                disable_multiplexer_nav_when_zoomed = true,
             })
         end
     }
