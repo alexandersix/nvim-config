@@ -62,11 +62,11 @@ return {
 
 			-- Configure auto-formatting
 			require("lsp-format").setup({
-				exclude = { "eslint", "volar", "eslint-lsp", "vue-language-server" }
+				exclude = { "eslint", "volar", "eslint-lsp", "vue-language-server", "jsonls" }
 			})
 
 			lsp.on_attach(function(client, bufnr)
-				if (client.name ~= "volar" and client.name ~= "eslint" and client.name ~= "tsserver") then
+				if (client.name ~= "volar" and client.name ~= "eslint" and client.name ~= "tsserver" and client.name ~= "jsonls") then
 					require("lsp-format").on_attach(client)
 				end
 
@@ -100,9 +100,9 @@ return {
 					fields = { "kind", "abbr", "menu" },
 					format = function(entry, vim_item)
 						local kind = require("lspkind").cmp_format({
-								mode = "symbol_text",
-								maxwidth = 50,
-							})(entry, vim_item)
+							mode = "symbol_text",
+							maxwidth = 50,
+						})(entry, vim_item)
 						local strings = vim.split(kind.kind, "%s", { trimempty = true })
 						kind.kind = " " .. (strings[1] or "") .. " "
 						kind.menu = "    (" .. (strings[2] or "") .. ")"
