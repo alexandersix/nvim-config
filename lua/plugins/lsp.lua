@@ -20,7 +20,10 @@ return {
 			{ 'onsails/lspkind.nvim' },
 
 			-- Progress
-			{ "j-hui/fidget.nvim" },
+			{
+				"j-hui/fidget.nvim",
+				version = "legacy",
+			},
 
 			-- Snippets
 			{ 'L3MON4D3/LuaSnip' },
