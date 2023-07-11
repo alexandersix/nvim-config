@@ -44,3 +44,7 @@ map("i", "!", "!<C-g>u", opts)
 map("i", "?", "?<C-g>u", opts)
 map("i", ">", "><C-g>u", opts)
 map("i", "<", "<<C-g>u", opts)
+
+-- Easier Movement
+map("n", "H", "^", opts)
+map("n", "L", "$", opts)
