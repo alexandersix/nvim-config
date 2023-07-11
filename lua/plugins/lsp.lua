@@ -76,6 +76,24 @@ return {
 				local opts = { buffer = bufnr, remap = false }
 				local bind = vim.keymap.set
 
+				local null_ls_sources = require("null-ls.sources")
+				local ft = vim.bo[bufnr].filetype
+
+				local has_null_ls = #null_ls_sources.get_available(ft, "NULL_LS_FORMATTING") > 0
+
+				bind("n", "<leader>pp", function()
+					vim.lsp.buf.format({
+						async = true,
+						bufnr = bufnr,
+						filter = function(filterClient)
+							if has_null_ls then
+								return filterClient.name == "null-ls"
+							else
+								return true
+							end
+						end
+					})
+				end, opts)
 				bind("n", "<leader>cD", function() vim.lsp.buf.declaration() end, opts)
 				bind("n", "<leader>cd", function() vim.lsp.buf.definition() end, opts)
 				bind("n", "<leader>ci", function() vim.lsp.buf.implementation() end, opts)
