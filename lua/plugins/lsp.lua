@@ -111,7 +111,7 @@ return {
 			local cmp_mappings = lsp.defaults.cmp_mappings({
 				['<C-k>'] = cmp.mapping.select_prev_item(),
 				['<C-j>'] = cmp.mapping.select_next_item(),
-				['<CR>'] = cmp.mapping.confirm({ select = true })
+				['<CR>'] = cmp.mapping.confirm({ select = false })
 			})
 
 			lsp.setup_nvim_cmp({
@@ -133,7 +133,7 @@ return {
 					end
 				},
 				mapping = cmp_mappings,
-				preselect = "none",
+				preselect = cmp.PreselectMode.None,
 			})
 
 			lsp.setup()
