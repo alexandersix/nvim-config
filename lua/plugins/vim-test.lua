@@ -6,14 +6,17 @@ local bind_tbl = {
     ["visit"] = ":TestVisit",
 }
 
+
 function ArtisanTest(identifier)
     vim.cmd("let test#php#phpunit#executable = 'php artisan test'")
+    vim.cmd("let test#php#pest#executable = 'php artisan test'")
 
     vim.cmd(bind_tbl[identifier])
 end
 
 function SailTest(identifier)
     vim.cmd("let test#php#phpunit#executable = 'sail artisan test'")
+    vim.cmd("let test#php#pest#executable = 'sail artisan test'")
 
     vim.cmd(bind_tbl[identifier])
 end

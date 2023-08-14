@@ -30,6 +30,9 @@ return {
 
 			-- Snippet Collection (Optional)
 			{ 'rafamadriz/friendly-snippets' },
+
+			-- Null-ls
+			{ "jose-elias-alvarez/null-ls.nvim" },
 		},
 		config = function()
 			require("fidget").setup()
@@ -64,13 +67,14 @@ return {
 			lsp.nvim_workspace()
 
 			-- Configure auto-formatting
-			require("lsp-format").setup({
-				exclude = { "eslint", "volar", "eslint-lsp", "vue-language-server", "jsonls" }
-			})
+			-- require("lsp-format").setup({
+			-- 	-- This line might not be necessary
+			-- 	exclude = { "eslint", "volar", "eslint-lsp", "vue-language-server", "jsonls", "intelephense" }
+			-- })
 
 			lsp.on_attach(function(client, bufnr)
-				if (client.name ~= "volar" and client.name ~= "eslint" and client.name ~= "tsserver" and client.name ~= "jsonls") then
-					require("lsp-format").on_attach(client)
+				if (client.name ~= "volar" and client.name ~= "eslint" and client.name ~= "tsserver" and client.name ~= "jsonls" and client.name ~= "intelephense") then
+					-- require("lsp-format").on_attach(client)
 				end
 
 				local opts = { buffer = bufnr, remap = false }
@@ -136,7 +140,34 @@ return {
 				preselect = cmp.PreselectMode.None,
 			})
 
+			lsp.format_on_save({
+				format_opts = {
+					async = true,
+					timeout_ms = 10000,
+				},
+				servers = {
+					-- ['intelephense'] = { "php" }, -- Can run instead of Pint
+					['lua_ls'] = { "lua" },
+					["null-ls"] = { "javascript", "typescript", "svelte", "vue", "php", "markdown", "mdx", "blade" },
+				}
+			})
+
 			lsp.setup()
+
+			local null_ls = require("null-ls")
+
+			null_ls.setup({
+				sources = {
+					null_ls.builtins.formatting.prettier.with({
+						extra_filetypes = { "svelte" }
+					}),
+					null_ls.builtins.formatting.blade_formatter,
+					null_ls.builtins.formatting.pint
+				},
+				on_attach = function(client, _)
+					require("lsp-format").on_attach(client)
+				end,
+			})
 		end
 	}
 }
