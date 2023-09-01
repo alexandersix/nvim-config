@@ -14,7 +14,7 @@ return {
                     enable = true
                 },
                 ensure_installed = { "bash", "c", "cpp", "css", "git_rebase", "go", "html", "javascript", "json", "lua",
-                    "php", "rust", "svelte", "tsx", "typescript", "vim", "vue", "yaml" },
+                    "php", "rust", "sql", "svelte", "tsx", "typescript", "vim", "vue", "yaml" },
                 highlight = {
                     enable = true,
                 },
