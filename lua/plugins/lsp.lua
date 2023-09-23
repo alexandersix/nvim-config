@@ -66,17 +66,7 @@ return {
 			-- Configure lua language server for neovim
 			lsp.nvim_workspace()
 
-			-- Configure auto-formatting
-			-- require("lsp-format").setup({
-			-- 	-- This line might not be necessary
-			-- 	exclude = { "eslint", "volar", "eslint-lsp", "vue-language-server", "jsonls", "intelephense" }
-			-- })
-
 			lsp.on_attach(function(client, bufnr)
-				if (client.name ~= "volar" and client.name ~= "eslint" and client.name ~= "tsserver" and client.name ~= "jsonls" and client.name ~= "intelephense") then
-					-- require("lsp-format").on_attach(client)
-				end
-
 				local opts = { buffer = bufnr, remap = false }
 				local bind = vim.keymap.set
 
