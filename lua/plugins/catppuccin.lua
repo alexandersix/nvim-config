@@ -1,13 +1,13 @@
 return {
-    { 
-        "catppuccin/nvim", 
+    {
+        "catppuccin/nvim",
         as = "catppuccin",
         lazy = false,
         priority = 1000,
         config = function()
             require("catppuccin").setup({
                 flavour = "macchiato", -- latte, frappe, macchiato, mocha
-                background = { -- :h background
+                background = {         -- :h background
                     light = "latte",
                     dark = "mocha",
                 },
@@ -19,7 +19,7 @@ return {
                     percentage = 0.15,
                 },
                 no_italic = false, -- Force no italic
-                no_bold = false, -- Force no bold
+                no_bold = false,   -- Force no bold
                 styles = {
                     comments = { "italic" },
                     conditionals = { "italic" },
@@ -35,7 +35,7 @@ return {
                     operators = {},
                 },
                 color_overrides = {},
-                custom_highlights = function (colors)
+                custom_highlights = function(colors)
                     return {
                         LineNr = { fg = colors.surface2 }
                     }
@@ -54,7 +54,7 @@ return {
             })
 
             -- setup must be called before loading
-            vim.cmd.colorscheme "catppuccin"        
+            vim.cmd.colorscheme "catppuccin"
         end
     },
 }
